@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>next 技巧</title>
+    <url>/2020/02/05/next_usage/</url>
+    <content><![CDATA[<h2 id="配置-hexo-本地搜索"><a href="#配置-hexo-本地搜索" class="headerlink" title="配置 hexo 本地搜索"></a>配置 hexo 本地搜索</h2><p>安装插件 <code>npm install hexo-generator-searchdb --save</code><br><a id="more"></a><br>然后我们修改站点配置_config.yml 文件，添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地搜索</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>然后修改主题配置文件_config.yml：搜local_search,将enable设为true。</p>
+<h2 id="修改背景图片和透明度"><a href="#修改背景图片和透明度" class="headerlink" title="修改背景图片和透明度"></a>修改背景图片和透明度</h2><p>修改next配置文件_config.yml，添加一个用于自定义样式的文件。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(<span class="regexp">/images/</span>cyberpunk2077.png);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed; <span class="comment">//不重复</span></span><br><span class="line">    background-size: cover;      <span class="comment">//填充</span></span><br><span class="line">    background-position:<span class="number">50</span>% <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//博客内容透明化</span></span><br><span class="line"><span class="comment">//文章内容的透明度设置</span></span><br><span class="line">.content-wrap &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//侧边框的透明度设置</span></span><br><span class="line">.sidebar &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//菜单栏的透明度设置</span></span><br><span class="line">.header-inner &#123;</span><br><span class="line">  background: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.9</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//搜索框（local-search）的透明度设置</span></span><br><span class="line">.popup &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="标签插件（Tag-Plugins）"><a href="#标签插件（Tag-Plugins）" class="headerlink" title="标签插件（Tag Plugins）"></a>标签插件（Tag Plugins）</h2><p>hexo私有的markdown语法。</p>
+<h3 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center"><p>世间所有的相遇，都是久别重逢</p>
+</blockquote>
+<h3 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note <span class="keyword">default</span> %&#125;</span><br><span class="line"><span class="keyword">default</span> 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主题配置文件中可以修改风格</span></span><br><span class="line"># Note tag (bs-callout).</span><br><span class="line">note:</span><br><span class="line">  # Note tag style values:</span><br><span class="line">  #  - simple    bs-callout old alert style. Default.</span><br><span class="line">  #  - modern    bs-callout new (v2-v3) alert style.</span><br><span class="line">  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span><br><span class="line">  #  - disabled  disable all CSS styles import of note tag.</span><br><span class="line">  # 风格</span><br><span class="line">  style: flat</span><br><span class="line">  # 要不要图标</span><br><span class="line">  icons: <span class="literal">true</span></span><br><span class="line">  # 圆角矩形</span><br><span class="line">  border_radius: <span class="number">3</span></span><br><span class="line">  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span><br><span class="line">  # Offset also applied to label tag variables. This option can work with disabled note tag.</span><br><span class="line">  light_bg_offset: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>显示效果</p>
+<div class="note default">
+            <p>default 提示块标签</p>
+          </div>
+<div class="note primary">
+            <p>primary 提示块标签</p>
+          </div>
+<div class="note success">
+            <p>success 提示块标签</p>
+          </div>
+<div class="note info">
+            <p>info 提示块标签</p>
+          </div>
+<div class="note warning">
+            <p>warning 提示块标签</p>
+          </div>
+<div class="note danger">
+            <p>danger 提示块标签</p>
+          </div>
+<h3 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br><span class="line"><span class="comment">// url : 绝对或相对 URL</span></span><br><span class="line"><span class="comment">// text : 按钮文字，如果未指定图标则为必须</span></span><br><span class="line"><span class="comment">// icon : FontAwesome 图标名称。如果未指定文本，则为必需</span></span><br><span class="line"><span class="comment">// [class] : FontAwesome 类：fa-fw | fa-lg | fa-2x | fa-3x | fa-4x | fa-5X ，可选参数。</span></span><br><span class="line"><span class="comment">// [title] : 鼠标悬停时的工具提示，可选参数。</span></span><br><span class="line"><span class="comment">// 外面最好加一层div</span></span><br></pre></td></tr></table></figure>
+<div><a class="btn" href="https://1eonhardt.github.io/ " target="_blank" rel="noopener" title="这是我的个人博客首页"><i class="fa fa-home fa-fw"></i>首页</a></div>
+
+<h3 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h3><p>在文章中插入 iframe。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
+<iframe src="http://www.baidu.com/" width="400" height="250" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<h3 id="插入指定大小的图片"><a href="#插入指定大小的图片" class="headerlink" title="插入指定大小的图片"></a>插入指定大小的图片</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% img [class names] /path/to/image [width] [height] '"title text" "alt text"' %&#125;</span><br></pre></td></tr></table></figure>
+<img src="/images/pink_girl.jpg" class="" width="300" height="480" title="pink_girl PINK_GIRL">
+<h2 id="添加音乐播放器"><a href="#添加音乐播放器" class="headerlink" title="添加音乐播放器"></a>添加音乐播放器</h2><p>下载<a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener" title="Aplayer">Aplayer</a>源码到本地，解压后将 dist 文件夹复制到 themes\next\source 文件夹下。</p>
+<p>在themes\next\layout_layout.swig文件，body标签内，加上以下代码。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/dist/APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"aplayer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/dist/APlayer.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meting-js</span></span></span><br><span class="line"><span class="tag">  <span class="attr">server</span>=<span class="string">"netease"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"playlist"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"1984358829"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">mini</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">fixed</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">list-folded</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">meting-js</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>id: song id / playlist id / album id / search keyword</li>
+<li>server: netease, tencent, kugou, xiami, baidu</li>
+<li>type: song, playlist, album, search, artist</li>
+<li>order: list, random</li>
+<li>loop: all, one</li>
+<li>list-max-height: 列表高度</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 语法</title>
+    <url>/2020/02/05/cpp_grammar/</url>
+    <content><![CDATA[<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>C++中引用相当于给变量起别名。</p>
+<ul>
+<li>不能有空引用</li>
+<li>必须在创建时初始化</li>
+<li>初始化后不可变<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;ra = a; <span class="comment">// 给a取了个别名ra</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">ra = b; <span class="comment">// 实际上是给ra赋值，而不是重新指定引用</span></span><br><span class="line">ra = <span class="number">5</span>; <span class="comment">// ra和a是同一块内存。修改ra就是修改a</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; ra &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将引用作为<strong>参数</strong>，表示传入的是原参数的一个别名。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 值传递，left,right是实参的一个副本，修改left和right不会对原变量产生影响</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span> <span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> temp = left;</span><br><span class="line">     left = right ;</span><br><span class="line">     right = temp ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用传递, left,right是传进来的变量的别名，修改left和right，就是修改原变量</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span> <span class="params">(<span class="keyword">int</span> &amp;left, <span class="keyword">int</span> &amp;right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> temp = left;</span><br><span class="line">     left = right ;</span><br><span class="line">     right = temp ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用时直接传相应类型的变量即可。不能直接传常量。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span> <span class="params">(<span class="keyword">int</span> *left, <span class="keyword">int</span> *right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> temp = *left;</span><br><span class="line">     *left = *right ;</span><br><span class="line">     *right = temp ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将引用作为返回值</p>
+<ul>
+<li>当函数返回时，如果有返回值，函数将返回值复制到指定的CPU寄存器或内存单元。随后调用程序去查看该单元。也就是说，函数计算完成后，还有一个复制的步骤。</li>
+<li>返回对象时，会调用该对象的复制构造函数，来得到返回对象的一个拷贝。</li>
+<li>如果返回的是对象的引用，就不会调用复制构造函数，效率更高。但是需要引用指向的对象已经存在</li>
+<li>如果返回的对象是一个局部变量，就不能返回引用。因为局部变量在函数结束后就会被销毁，那么返回的引用就没有意义了。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> price;</span><br><span class="line">    <span class="keyword">int</span> isbn;</span><br><span class="line">    Book()&#123;&#125;;</span><br><span class="line">    Book(<span class="keyword">int</span> a, <span class="keyword">int</span> b):price(a),isbn(b)&#123;&#125;</span><br><span class="line">    Book(Book&amp; b)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"copy constructor used!!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回对象是局部变量。 这里不能返回引用</span></span><br><span class="line"><span class="function">Book <span class="title">compare</span><span class="params">(Book&amp; a, Book&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Book c = &#123;<span class="number">9</span>, <span class="number">456</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// c = compare(a, b); // 没有输出。 为什么？</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里不返回引用，会调用b的复制构造函数</span></span><br><span class="line"><span class="function">Book <span class="title">compare</span><span class="params">(Book&amp; a, Book&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line">c = compare(a, b); <span class="comment">// 会输出"copy constructor used!!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回引用的话，就不会调用b的复制构造函数</span></span><br><span class="line"><span class="function">Book <span class="title">compare</span><span class="params">(Book&amp; a, Book&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line">c = compare(a, b); <span class="comment">// 没有输出</span></span><br></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ul>
+<li>vitural关键字表示 <strong>虚函数</strong>，虚函数的调用取决于指向或者引用的对象的类型，而不是指针或者引用自身的类型。</li>
+<li><strong>纯虚函数</strong> 在基类中声明但不定义的虚函数，但要求任何派生类都要定义自己的实现方法。在基类中实现纯虚函数的方法是在函数原型后加“=0”，如virtual void funtion1()=0；含有纯虚函数的类称为抽象类。</li>
+<li>const:<ul>
+<li>修饰函数引用参数，表示只使用，不修改。并且可以接受const限定的变量。</li>
+<li>类成员函数()后，表示不会对函数访问的对象进行修改。</li>
+<li>修饰返回引用，因为引用是左值，不用const修饰，可能会有给函数赋值的迷惑操作。(如GenRef() = x;)</li>
+<li>const修饰的变量必须在声明时就初始化。因为之后不允许赋值了。</li>
+</ul>
+</li>
+<li>类成员初始化列表，即在构造函数()后加冒号，即Stack():size(50)。意为在构造函数执行之前，先将冒号后指定的成员初始化。可以使用构造函数的参数。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Stack s; <span class="comment">// 调用默认构造函数，创建一个stack对象，名称为s。</span></span><br><span class="line">Stack *ps = <span class="keyword">new</span> Stack; <span class="comment">// 调用默认构造函数，动态创建一个stack对象，并将ps指针指向该对象，这个对象没有名字，只能用箭头访问成员。</span></span><br></pre></td></tr></table></figure>
+<h3 id="模板和纯虚函数"><a href="#模板和纯虚函数" class="headerlink" title="模板和纯虚函数"></a>模板和纯虚函数</h3><p>如果是在模板类中定义的虚函数，其定义不能为内联函数形式。否则会报”不允许使用抽象类类型 \”SeqStack\<int\>\” 的对象: — 纯虚拟 函数 \”Stack\<T\>::IsEmpty [其中 T=int]\” 没有强制替代项 — 纯虚拟 函数 \”Stack\<T\>::IsFull [其中 T=int]\” 没有强制替代项”</p>
+<h3 id="模板类中重载运算符"><a href="#模板类中重载运算符" class="headerlink" title="模板类中重载运算符"></a>模板类中重载运算符</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在模板类中</span></span><br><span class="line"><span class="comment">// 错误用法</span></span><br><span class="line"><span class="comment">// 这里&lt;&gt;表示这是一个模板函数? 否则会报declares a non-template function</span></span><br><span class="line"><span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt; &lt;&gt;(ostream &amp;os, SeqStack&lt;T&gt; &amp;s);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确用法1 增加前置声明</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">class</span> <span class="title">SeqStack</span>;</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; <span class="title">ostream</span> &amp;<span class="title">operator</span>&lt;&lt; &lt;&gt;(ostream &amp;os, SeqStack&lt;T&gt; &amp;s);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">// 正确用法2 直接在类内定义</span></span><br><span class="line"><span class="class">// 这里不加&lt;&gt;</span></span><br><span class="line"><span class="class">friend ostream &amp;operator&lt;&lt;(ostream &amp;os, SeqStack&lt;T&gt; &amp;s)&#123;</span></span><br><span class="line"><span class="class">    os &lt;&lt; "top = " &lt;&lt; s.top_ &lt;&lt; endl;</span></span><br><span class="line"><span class="class">    for (int i = 0; i &lt;= s.top_; i++)</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line"><span class="class">        os &lt;&lt; i &lt;&lt; ":" &lt;&lt; s.elements_[i] &lt;&lt; endl;</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    return os;</span></span><br><span class="line"><span class="class">&#125;;</span></span><br></pre></td></tr></table></figure>
+<h2 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h2><h3 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h3><p>以运算符的重载为例。</p>
+<ul>
+<li>作为类成员的重载运算符函数，左操作数是调用对象。右操作数是被当参数传递的对象。</li>
+<li>非成员的的重载运算符函数，第一个参数是左操作数，第二个参数是右操作数。</li>
+</ul>
+<p>非成员的的重载运算符函数访问不了类的私有成员，除非将其<strong>原型放在类中声明，并用friend修饰</strong>。这种称为友元函数。友元函数不是真的类成员，但和类成员函数的访问权限相同。定义时也不用加上类限定符(Class::)</p>
+<h3 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h3><p>电视和遥控器。遥控器要使用电视的某些功能，需要用到电视的某些私有/保护成员，这需要电视为遥控器提供访问权限。这可以通过在电视类中将遥控器类设为友元来实现(class TV{public: friend class RemoteControl; …})。这样，如果遥控器类获得了电视类的引用，就可以访问电视的私有/保护成员。</p>
+<h3 id="友元成员函数"><a href="#友元成员函数" class="headerlink" title="友元成员函数"></a>友元成员函数</h3><p>遥控器类中只有一个方法需要使用电视类中的私有成员。那么可以在电视类中将遥控器类的指定方法设为友元(class TV{public: friend void Remote::SetChannel(Tv&amp; t, int ch); …})。</p>
+<p>注意：此时需要特别注意类和方法的定义和声明<strong>顺序</strong>。  </p>
+<ul>
+<li>在Tv类中声明Remote类的一个方法为友元前，需要先声明Remote类和该方法(编译器需要知道这个方法)。</li>
+<li>在Remote类中声明SetChannel方法，需要先知道Tv是一个类，故需要先声明Tv类。为避免循环依赖，可以使用前置声明(forward declaration)，例如：class Tv;</li>
+<li>如果Remote中的内联方法使用了Tv类的方法，那么编译器必须先看到Tv的声明。但由上可知，Remote类声明应该在Tv类之前。故不能再Remote类声明中写内联方法，而应该在Tv类声明之后再定义，并用inline修饰。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span>;</span> <span class="comment">// 前置声明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Remote</span>&#123;</span>...&#125;; <span class="comment">// 需要权限的方法声明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tv</span>&#123;</span>...&#125;; <span class="comment">// 友元声明</span></span><br><span class="line"><span class="comment">// 需要权限的方法定义</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Remote::SetChannel</span><span class="params">(Tv&amp; t, <span class="keyword">int</span> ch)</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><ul>
+<li>new:new int[5] 中new仅仅是用malloc函数在堆中分配了指定大小的内存，并返回该内存的地址(地址是对象存储地址的起始)。</li>
+<li>new出来的地址都要用delete释放。如果是T vars = new T[]分配的数组，用delete[] vars释放。</li>
+<li>不要delete同一个内存块两次。</li>
+<li>delete空指针是安全的。</li>
+<li><strong>动态结构</strong>:structName *ps = new structName:这样创建的结构是在运行时动态创建的，且该结构没有名称，只知道其地址。因此，不能用句点访问结构的成员，而应该用箭头运算符来访问。</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>头文件的引用：<ul>
+<li>系统自带的：<math.h> 用&lt;&gt;</li>
+<li>自定义的： “user.h” 用”” 查找顺序为：用户目录-&gt;c++安装目录-&gt;系统文件</li>
+</ul>
+</li>
+<li>枚举:enum color {red, blue, yellow, black};<ul>
+<li>color是新的(枚举)类名。</li>
+<li>red,blue…成为符号常量，对应整数值0~3，称为枚举量。</li>
+<li>枚举是整型，可以被提升为int，但反之不可以。</li>
+<li>如果int值是有效的，则可以通过强制转换，将int值赋给枚举变量。color c;c = color(0);</li>
+<li>可以设置枚举量的值，在定义枚举时用=赋值即可。</li>
+<li>枚举量的值默认初始为0，之后没个没被初始化的枚举量的值比起前面一个大1。</li>
+</ul>
+</li>
+<li>c++命名约定：<ul>
+<li>常规函数驼峰，取值设值函数要求与相应的变量名对应(get,set小写)。</li>
+<li>变量一律小写，单词之间用下划线隔开，类成员变量最后加个下划线以区分。</li>
+<li>文件名也是小写加下划线</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法</title>
+    <url>/2018/12/04/markdown/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Markdown是一种轻量级的标记语言，以纯文本编写，以HTML格式发布。<br><a id="more"></a></p>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>用1~6个”#”表示1到6级标题</p>
+<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>段落的前后要有空行，所谓的空行是指没有文字内容。<br>若想在段内强制换行的方式是使用两个以上空格加上回车（引用中换行省略回车）。</p>
+<h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>在段落的每行或者只在第一行使用符号&gt;,还可使用多个嵌套引用，如：</p>
+<blockquote>
+<p>区块引用</p>
+<blockquote>
+<p>嵌套</p>
+</blockquote>
+</blockquote>
+<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>代码区块的建立是在每行加上4个空格或者一个制表符（如同写代码一样）。<br>注意:需要和普通段落之间存在空行。</p>
+<pre><code>void main(){
+    printf(&quot;HelloMarkdown&quot;)
+}
+</code></pre><p>或者用```language ```表示代码区块，这种方法还会有相应的语法高亮</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">"javascript"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(str)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>使用”*“或”<em>“<br>一个表示<em>斜体</em>  相当于 <em\><br>两个表示<em>_粗体</em></em> 相当于 <strong\><br>两个”~~“添加<del>删除线</del></p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><p>普通的用1.,2.,3.即可。<br>注意：”.”后面要空一格</p>
+<ol>
+<li>html</li>
+<li>js</li>
+<li>css</li>
+</ol>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p>每一项前面加”*”,”+”,”-“之一即可。<br>注意：连续使用两个列表，中间要空两行，否则视为上一个列表的延续</p>
+<ul>
+<li>mysql</li>
+<li>redis</li>
+<li>oracle</li>
+</ul>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>分割线使用三个或以上”*”</p>
+<hr>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>链接可以由两种形式生成：行内式和参考式。</p>
+<h3 id="行内式"><a href="#行内式" class="headerlink" title="行内式"></a>行内式</h3><p>[百度一下，你就知道](<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> “链接标题”)<br><a href="https://www.baidu.com" target="_blank" rel="noopener" title="链接标题">百度一下，你就知道</a></p>
+<h3 id="参考式"><a href="#参考式" class="headerlink" title="参考式"></a>参考式</h3><p><a href="http://www.baidu.com" target="_blank" rel="noopener" title="链接标题1">链接文本1</a><br><a href="http://www.baidu.com" target="_blank" rel="noopener" title="提示信息2">百度一下，你就知道2</a></p>
+<p>另一种写法<br><a href="url" title="链接标题">链接文本</a></p>
+<p>hexo不支持参考式</p>
+<h3 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h3><p><code>&lt;http://www.baidu.com&gt;</code><br><a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>同链接，前面加一个”!”<br>![](/images/ace.jpg “ace”)<br><img src="/images/ace.jpg" alt="" title="ace"></p>
+<h2 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h2><p>转义符号，将符号变成普通符号</p>
+<h2 id="反引号"><a href="#反引号" class="headerlink" title="反引号"></a>反引号</h2><p>标记，<code>高亮</code></p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+</search>
