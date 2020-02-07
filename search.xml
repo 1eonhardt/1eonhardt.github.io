@@ -156,7 +156,7 @@
 </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        例题2
+        例题2代码
     </div>
     <div class='spoiler-content'>
         <div class="note info">
@@ -188,7 +188,7 @@
 
     </div>
 </div>
-<p><img src="../images/hexo_list_note_1.png" alt="图片不见啦&gt;_&lt;" /></p>
+<img src="/images/list_note_1.png" class="" title="list">
 <p>尾插法：元素录入顺序和生成的链表中的元素数据顺序相同。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -199,7 +199,7 @@
 
     </div>
 </div>
-<p><img src="../images/hexo_list_note_2.png" alt="图片不见啦&gt;_&lt;" /></p>
+<img src="/images/list_note_2.png" class="" title="list">
 <h4 id="查找"><a class="markdownIt-Anchor" href="#查找"></a> 查找</h4>
 <p>按值查找和按序查找，算法都是从头遍历，直到找到相应结点。<br />
 按值查找需要一个临时变量计数，按序查找只要比较数据域是否相同。时间复杂度都是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
@@ -211,8 +211,8 @@
 <p>遍历，计数。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
 <h3 id="双链表"><a class="markdownIt-Anchor" href="#双链表"></a> 双链表</h3>
 <p>就是在单链表结点中加了一个指向前驱的指针。方便找到前驱结点。又因为每个节点有两个指针，插入和删除时指针变化复杂了一点。</p>
-<p><img src="../images/hexo_list_note_3.png" alt="图片不见啦&gt;_&lt;" /></p>
-<p><img src="../images/hexo_list_note_4.png" alt="图片不见啦&gt;_&lt;" /></p>
+<img src="/images/list_note_3.png" class="" title="duallist list">
+<img src="/images/list_note_4.png" class="" title="duallist2 list">
 <h3 id="循环链表"><a class="markdownIt-Anchor" href="#循环链表"></a> 循环链表</h3>
 <p>表中最后一个元素的next指针指向头结点。循环链表可以从任意节点开始遍历整个链表。<br />
 Tip：如果常用操作都是在表头表尾进行的，可以不用头指针，而用尾指针。(r是尾指针,r-&gt;next即为头指针)。</p>
@@ -324,7 +324,7 @@ Tip：如果常用操作都是在表头表尾进行的，可以不用头指针�
 <h2 id="添加音乐播放器"><a class="markdownIt-Anchor" href="#添加音乐播放器"></a> 添加音乐播放器</h2>
 <p>下载<a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener" title="Aplayer">Aplayer</a>源码到本地，解压后将 dist 文件夹复制到 themes\next\source 文件夹下。</p>
 <p>在themes\next\layout_layout.swig文件，body标签内，加上以下代码。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/dist/APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"aplayer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/dist/APlayer.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meting-js</span></span></span><br><span class="line"><span class="tag">  <span class="attr">server</span>=<span class="string">"netease"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"playlist"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"1984358829"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">mini</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">fixed</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">list-folded</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">meting-js</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/dist/APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"aplayer"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/dist/APlayer.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meting-js</span></span></span><br><span class="line"><span class="tag">  <span class="attr">server</span>=<span class="string">"netease"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"playlist"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"3230835189"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">fixed</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">list-folded</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">meting-js</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>id: song id / playlist id / album id / search keyword</li>
 <li>server: netease, tencent, kugou, xiami, baidu</li>
@@ -353,6 +353,7 @@ Tip：如果常用操作都是在表头表尾进行的，可以不用头指针�
 <h2 id="内容折叠"><a class="markdownIt-Anchor" href="#内容折叠"></a> 内容折叠</h2>
 <p>文章中有大段代码的话会不太好看。通过安装<code>hexo-spoiler</code>插件，即可解决。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 安装插件</span><br><span class="line">npm install hexo-sliding-spoiler --save</span><br><span class="line"></span><br><span class="line">// 如果hexo没有自动检测到插件，则需要在hexo配置文件中添加</span><br><span class="line">plugins:</span><br><span class="line"> - hexo-sliding-spoiler</span><br><span class="line"></span><br><span class="line">// 使用方式 效果看上面样式修改部分</span><br><span class="line">&#123;% spoiler title %&#125;</span><br><span class="line">content</span><br><span class="line">&#123;% endspoiler %&#125;</span><br></pre></td></tr></table></figure>
+<p>一个问题：给折叠部分绑定点击事件的spoiler.js需要刷新页面才能加载。如果启用了pjax，spoiler.js无法加载。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>Blog</category>
