@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="指针引用C++中引用相当于给变量起别名。  不能有空引用 必须在创建时初始化 初始化后不可变">
+  <meta name="description" content="记录使用C++时遇到的一些语法问题及延伸">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 语法">
 <meta property="og:url" content="http://yoursite.com/2020/02/05/cpp_grammar/index.html">
 <meta property="og:site_name" content="Leonhardt&#39;s Blog">
-<meta property="og:description" content="指针引用C++中引用相当于给变量起别名。  不能有空引用 必须在创建时初始化 初始化后不可变">
+<meta property="og:description" content="记录使用C++时遇到的一些语法问题及延伸">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-04T23:49:49.831Z">
-<meta property="article:modified_time" content="2020-02-05T17:42:55.278Z">
+<meta property="article:modified_time" content="2020-02-06T16:22:53.224Z">
 <meta property="article:author" content="Leonhardt">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -158,17 +158,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">3</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">6</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -248,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-06 01:42:55" itemprop="dateModified" datetime="2020-02-06T01:42:55+08:00">2020-02-06</time>
+                <time title="修改时间：2020-02-07 00:22:53" itemprop="dateModified" datetime="2020-02-07T00:22:53+08:00">2020-02-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,15 +289,16 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>4.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
+            <div class="post-description">记录使用C++时遇到的一些语法问题及延伸</div>
 
         </div>
       </header>
@@ -363,13 +364,12 @@
 <li>delete空指针是安全的。</li>
 <li><strong>动态结构</strong>:structName *ps = new structName:这样创建的结构是在运行时动态创建的，且该结构没有名称，只知道其地址。因此，不能用句点访问结构的成员，而应该用箭头运算符来访问。</li>
 </ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li>头文件的引用：<ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="头文件的引用"><a href="#头文件的引用" class="headerlink" title="头文件的引用"></a>头文件的引用</h3><ul>
 <li>系统自带的：<math.h> 用&lt;&gt;</li>
 <li>自定义的： “user.h” 用”” 查找顺序为：用户目录-&gt;c++安装目录-&gt;系统文件</li>
 </ul>
-</li>
-<li>枚举:enum color {red, blue, yellow, black};<ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>enum color {red, blue, yellow, black};</p>
+<ul>
 <li>color是新的(枚举)类名。</li>
 <li>red,blue…成为符号常量，对应整数值0~3，称为枚举量。</li>
 <li>枚举是整型，可以被提升为int，但反之不可以。</li>
@@ -377,15 +377,19 @@
 <li>可以设置枚举量的值，在定义枚举时用=赋值即可。</li>
 <li>枚举量的值默认初始为0，之后没个没被初始化的枚举量的值比起前面一个大1。</li>
 </ul>
-</li>
-<li>c++命名约定：<ul>
+<h3 id="c-命名约定"><a href="#c-命名约定" class="headerlink" title="c++命名约定"></a>c++命名约定</h3><ul>
 <li>常规函数驼峰，取值设值函数要求与相应的变量名对应(get,set小写)。</li>
 <li>变量一律小写，单词之间用下划线隔开，类成员变量最后加个下划线以区分。</li>
 <li>文件名也是小写加下划线</li>
 </ul>
-</li>
+<h3 id="数组初始化规则"><a href="#数组初始化规则" class="headerlink" title="数组初始化规则"></a>数组初始化规则</h3><ul>
+<li>只有在定义数组时才能使用初始化，以后就不能使用了，也不能将一个数组赋给另一个数组。初始化后的数组只能用下标赋值。</li>
+<li>部分初始化：给定的初始化列表的长度没有指定的数组长度大时，编译器将用给定值初始化最前面的n个元素，剩下的未指定值的元素都设为0。将数组所有初始化为0，只需要 <code>int arr[5] = {0}</code>即可。</li>
+<li>C++11中，数组初始化可以不加等号。初始化为0可用 <code>int arr[5] = {}</code>。</li>
+<li>禁止缩窄转化(即在初始化时有float-&gt;long之类的类型转换)。</li>
 </ul>
-
+<h3 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> isbn;</span><br><span class="line">    <span class="keyword">int</span> price;</span><br><span class="line">&#125;Book, *Pbook;</span><br><span class="line"></span><br><span class="line">Book b = &#123;.isbn=<span class="number">98741931</span>, .price=<span class="number">50</span>&#125;;</span><br><span class="line">Pbook pb = &amp;b; <span class="comment">// 这里pb就是Book类型的指针</span></span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -449,7 +453,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#指针"><span class="nav-number">1.</span> <span class="nav-text">指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">1.1.</span> <span class="nav-text">引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板和纯虚函数"><span class="nav-number">2.1.</span> <span class="nav-text">模板和纯虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板类中重载运算符"><span class="nav-number">2.2.</span> <span class="nav-text">模板类中重载运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#友元"><span class="nav-number">3.</span> <span class="nav-text">友元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#友元函数"><span class="nav-number">3.1.</span> <span class="nav-text">友元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#友元类"><span class="nav-number">3.2.</span> <span class="nav-text">友元类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#友元成员函数"><span class="nav-number">3.3.</span> <span class="nav-text">友元成员函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存"><span class="nav-number">4.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#指针"><span class="nav-number">1.</span> <span class="nav-text">指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">1.1.</span> <span class="nav-text">引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板和纯虚函数"><span class="nav-number">2.1.</span> <span class="nav-text">模板和纯虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板类中重载运算符"><span class="nav-number">2.2.</span> <span class="nav-text">模板类中重载运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#友元"><span class="nav-number">3.</span> <span class="nav-text">友元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#友元函数"><span class="nav-number">3.1.</span> <span class="nav-text">友元函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#友元类"><span class="nav-number">3.2.</span> <span class="nav-text">友元类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#友元成员函数"><span class="nav-number">3.3.</span> <span class="nav-text">友元成员函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存"><span class="nav-number">4.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件的引用"><span class="nav-number">5.1.</span> <span class="nav-text">头文件的引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">5.2.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-命名约定"><span class="nav-number">5.3.</span> <span class="nav-text">c++命名约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组初始化规则"><span class="nav-number">5.4.</span> <span class="nav-text">数组初始化规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef"><span class="nav-number">5.5.</span> <span class="nav-text">typedef</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -465,20 +469,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -497,7 +501,7 @@
         <h3 class="widget-title">Tag Cloud</h3>
         <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li></ul>
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/list/" rel="tag">list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
         </div>
     </div>
@@ -532,12 +536,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">13k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">22 分钟</span>
 </div>
 
         

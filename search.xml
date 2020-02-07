@@ -1,15 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>栈笔记</title>
+    <url>/2020/02/06/dsa_stack_note/</url>
+    <content><![CDATA[<h2 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈(Stack)"></a>栈(Stack)</h2><h3 id="栈的定义"><a href="#栈的定义" class="headerlink" title="栈的定义"></a>栈的定义</h3><p>栈可定义为只允许在表的末端进行插入和删除的线性表。又叫后进先出的线性表(LIFO)。允许插入和删除的一端叫栈顶(top),另一端叫栈底(bottom)。<br><a id="more"></a></p>
+<h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><h4 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h4><p>用顺序表或数组实现。<br>用数组存储数据，数组[0]为栈底，数组最后一个非零元素为栈顶，用top标识。<br>入栈时，数据加到top+1位置。需要考虑栈溢出的情况。<br>出栈时，移除top位置数据。需要考虑空栈的情况。</p>
+<h4 id="共享栈"><a href="#共享栈" class="headerlink" title="共享栈"></a>共享栈</h4><p>用一个数组定义两个栈：定义一个足够的栈空间。将空间两端设为栈底，用b[0],b[1]指示，栈顶用t[0],t[1]标记。t[x]=b[x]空栈时相应的栈为空，t[0]+1==t[1]时，栈满。</p>
+<h4 id="链式栈"><a href="#链式栈" class="headerlink" title="链式栈"></a>链式栈</h4><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>DataStructure</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绪论</title>
+    <url>/2020/02/06/dsa_introduction/</url>
+    <content><![CDATA[<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h3><ul>
+<li>数据：信息的载体，描述客观事物属性的符号的集合</li>
+<li>数据元素：数据的基本单位，通常作为一个整体来考虑。比如数据库中的一条记录。</li>
+<li>数据项：构成数据元素的最小单位。如数据库记录中的某一个字段。</li>
+<li>数据对象：具有相同性质的数据元素的集合。比如整数。</li>
+<li>数据类型：一个值的集合和定义在此集合上的一组操作的总称。<ul>
+<li>原子类型：值不可分割</li>
+<li>结构类型：值还可以分割</li>
+<li>抽象数据类型</li>
+</ul>
+</li>
+<li>抽象数据类型：包含数据对象，数据关系和基本操作集。其定义侧重于逻辑特性，而与实现无关。</li>
+<li>数据结构：数据元素之间的关系。</li>
+</ul>
+<h3 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h3><h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p>用于算法设计层面，主要类型有：</p>
+<ul>
+<li>集合：数据元素之间<strong>没有关系</strong></li>
+<li>线性结构：数据元素之间只有<strong>一对一</strong>的关系</li>
+<li>树形结构：数据元素之间有<strong>一对多</strong>的关系</li>
+<li>图或网状结构：数据元素之间有<strong>多对多</strong>的关系</li>
+</ul>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><h4 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h4><p>把逻辑上相邻的元素存储在物理上相邻的存储单元中。</p>
+<ul>
+<li>优点：可以实现<strong>随机存取</strong>(通过首地址和元素序号可在O(1)时间内找到指定元素)，每个元素占用最少空间</li>
+<li>缺点：只能使用相邻的一整块的存储单元，会产生较多外部碎片。增删元素会比较麻烦。</li>
+</ul>
+<h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p>通过指针来表示元素之间的逻辑关系。</p>
+<ul>
+<li>优点：不会出现碎片，空间利用率高</li>
+<li>缺点：不能实现随机存取。且每个元素占用额外的存储指针的空间。</li>
+</ul>
+<h4 id="索引存储"><a href="#索引存储" class="headerlink" title="索引存储"></a>索引存储</h4><p>储存信息的同时，建立附加的索引表。</p>
+<ul>
+<li>优点：检索速度快</li>
+<li>缺点：增加索引表后占用了更多空间。且在增删时需要修改索引表，会花费更多时间。</li>
+</ul>
+<h4 id="散列存储"><a href="#散列存储" class="headerlink" title="散列存储"></a>散列存储</h4><p>根据元素的关键字直接算出元素的存储地址</p>
+<ul>
+<li>优点：检索，增，删都很快</li>
+<li>缺点：如果散列函数不好，可能会产生冲突。解决冲突会增加时间和空间开销。</li>
+</ul>
+<h2 id="算法-Algorithm"><a href="#算法-Algorithm" class="headerlink" title="算法(Algorithm)"></a>算法(Algorithm)</h2><h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>语句的频度：指该语句在算法中被重复执行的次数。</li>
+<li>T(n)：算法中所有语句的频度之和</li>
+<li>f(n)：算法中基本运算(最深层循环内的语句)的频度。</li>
+<li>大O表示法：若T(n)和f(n)是定义在正整数集合上的两个函数，则存在正常数C和$n_0$，使得当$n \geq n_0$时，$0 \leq T(n) \leq Cf(n)$</li>
+</ul>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n)定义为该算法所耗费的存储空间。<br>空间复杂度分析只需要分析出输入和程序本身所占空间以外的空间。<br>算法<strong>原地工作</strong>，指算法所需的辅助空间为常量，即$O(1)$</p>
+<h3 id="常用大小比较"><a href="#常用大小比较" class="headerlink" title="常用大小比较"></a>常用大小比较</h3><p>$O(1) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n^2) &lt; O(2^n) &lt; O(n!) $</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>DataStructure</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性表笔记</title>
+    <url>/2020/02/06/dsa_list_note/</url>
+    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>具有相同数据类型的$n(n \geq 0)$个数据元素的有限序列。其一般表示为$L=(a<em>1,a_2,\dots,a_i,a</em>{i+1},\dots,a_n)$。除了表头元素$a_1$以外，每个元素有且仅有一个直接前驱。除表尾元素外，每个元素有且仅有一个直接后继。<br><a id="more"></a><br>特点：</p>
+<ul>
+<li>表中元素个数有限</li>
+<li>元素具有逻辑上的顺序</li>
+<li>元素都是数据元素？</li>
+<li>元素数据类型相同，意味着每个元素占有相同大小的存储空间</li>
+<li>元素具有抽象性，只关心元素之间的关系，而不关心具体存储的内容</li>
+</ul>
+<p>主要操作：</p>
+<ul>
+<li>初始化</li>
+<li>求表长</li>
+<li>按位查找</li>
+<li>按值查找</li>
+<li>插入</li>
+<li>删除</li>
+<li>判空</li>
+<li>销毁</li>
+<li>输出</li>
+</ul>
+<h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><p>即线性表的顺序存储。</p>
+<h3 id="基本操作实现"><a href="#基本操作实现" class="headerlink" title="基本操作实现"></a>基本操作实现</h3><ul>
+<li>插入：注意插入位置是否合法以及插入位置之后所有元素都要右移。<ul>
+<li>最好情况：表尾插入 O(1)</li>
+<li>最坏情况：表头插入 O(n)</li>
+<li>平均情况：$\sum_{i=1}^{n+1}P_i(n-i+1)=\frac n2$</li>
+</ul>
+</li>
+<li>删除：复杂度基本同上，一般要返回被删除的值</li>
+<li>按值查找：复杂度基本同上，注意考虑查找失败的情况</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        例题1代码
+    </div>
+    <div class='spoiler-content'>
+        <div class="note info">
+            <p>合并两个有序表，返回一个新的有序表</p>
+          </div>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">SeqList <span class="title">MergeOrderedList</span><span class="params">(SeqList &amp;a, SeqList &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SeqList m;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">0</span>, k=<span class="number">0</span>;</span><br><span class="line">    m.data = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 从m[0]开始，按顺序录入a，b当前元素中较小的那一个，直到较小的顺序表被遍历完</span></span><br><span class="line">        <span class="keyword">if</span> (a.data[i] &lt; b.data[j])</span><br><span class="line">            m.data[k++] = a.data[i++];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            m.data[k++] = b.data[j++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 录入a或b剩下的元素</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length)</span><br><span class="line">        m.data[k++] = a.data[i++];</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length)</span><br><span class="line">        m.data[k++] = b.data[j++];</span><br><span class="line">    m.length = k;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        例题2
+    </div>
+    <div class='spoiler-content'>
+        <div class="note info">
+            <p>在一个数组中存放两个线性表，交换这两个表的位置。(相当于循环左移一个左表长)<br>如(a1, a2, a3, a4, a5, b1, b2, b3)=&gt;(b1, b2, b3, a1, a2, a3, a4, a5)。实际上，相当于整个表向左循环左移了5位。</p>
+          </div>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Reverse</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right || right &gt; size)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">int</span> temp, mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= mid - left; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp = arr[left + i];</span><br><span class="line">        arr[left + i] = arr[right - i];</span><br><span class="line">        arr[right - i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先将数组整个逆置，再将两个线性表部分分别逆置</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Exchange</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Reverse(arr, <span class="number">0</span>, m + n - <span class="number">1</span>, m + n);</span><br><span class="line">    Reverse(arr, <span class="number">0</span>, n - <span class="number">1</span>, m);</span><br><span class="line">    Reverse(arr, n, m + n - <span class="number">1</span>, m + n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      <categories>
+        <category>DataStructure</category>
+      </categories>
+      <tags>
+        <tag>note</tag>
+        <tag>list</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>next 技巧</title>
     <url>/2020/02/05/next_usage/</url>
-    <content><![CDATA[<h2 id="配置-hexo-本地搜索"><a href="#配置-hexo-本地搜索" class="headerlink" title="配置 hexo 本地搜索"></a>配置 hexo 本地搜索</h2><p>安装插件 <code>npm install hexo-generator-searchdb --save</code><br><a id="more"></a><br>然后我们修改站点配置_config.yml 文件，添加如下内容：</p>
+    <content><![CDATA[<h2 id="配置-hexo-本地搜索"><a href="#配置-hexo-本地搜索" class="headerlink" title="配置 hexo 本地搜索"></a>配置 hexo 本地搜索</h2><p>安装插件 <code>npm install hexo-generator-searchdb --save</code><br>然后我们修改站点配置_config.yml 文件，添加如下内容：</p>
+<a id="more"></a>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地搜索</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
 <p>然后修改主题配置文件_config.yml：搜local_search,将enable设为true。</p>
 <h2 id="修改背景图片和透明度"><a href="#修改背景图片和透明度" class="headerlink" title="修改背景图片和透明度"></a>修改背景图片和透明度</h2><p>修改next配置文件_config.yml，添加一个用于自定义样式的文件。</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(<span class="regexp">/images/</span>cyberpunk2077.png);</span><br><span class="line">    background-repeat: no-repeat;</span><br><span class="line">    background-attachment:fixed; <span class="comment">//不重复</span></span><br><span class="line">    background-size: cover;      <span class="comment">//填充</span></span><br><span class="line">    background-position:<span class="number">50</span>% <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//博客内容透明化</span></span><br><span class="line"><span class="comment">//文章内容的透明度设置</span></span><br><span class="line">.content-wrap &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//侧边框的透明度设置</span></span><br><span class="line">.sidebar &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//菜单栏的透明度设置</span></span><br><span class="line">.header-inner &#123;</span><br><span class="line">  background: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.9</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//搜索框（local-search）的透明度设置</span></span><br><span class="line">.popup &#123;</span><br><span class="line">  opacity: <span class="number">0.9</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="标签插件（Tag-Plugins）"><a href="#标签插件（Tag-Plugins）" class="headerlink" title="标签插件（Tag Plugins）"></a>标签插件（Tag Plugins）</h2><p>hexo私有的markdown语法。</p>
+<h2 id="标签插件（Tag-Plugins）"><a href="#标签插件（Tag-Plugins）" class="headerlink" title="标签插件（Tag Plugins）"></a>标签插件（Tag Plugins）</h2><p>hexo私有的markdown语法。Tag中的内容不支持MathJax。数学公式显示不出来。</p>
 <h3 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center"><p>世间所有的相遇，都是久别重逢</p>
 </blockquote>
@@ -58,7 +202,18 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% if site.tags.length &gt; 1 %&#125;</span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for('/js/tagcloud.js') &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; url_for('/js/tagcanvas.js') &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"widget-wrap"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"widget-title"</span>&gt;</span>Tag Cloud<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myCanvasContainer"</span> <span class="attr">class</span>=<span class="string">"widget tagcloud"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">"250"</span> <span class="attr">height</span>=<span class="string">"250"</span> <span class="attr">id</span>=<span class="string">"resCanvas"</span> <span class="attr">style</span>=<span class="string">"width=100%"</span>&gt;</span></span><br><span class="line">                  &#123;&#123; list_tags() &#125;&#125;</span><br><span class="line">              <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      &#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>在next的配置文件中搜tagcloud可以修改配置。</p>
 <h2 id="样式修改"><a href="#样式修改" class="headerlink" title="样式修改"></a>样式修改</h2><p>在博客页面按F12，用最左上角的检查元素功能，选中想修改的部分，在elements中找到相应元素对应的class。在自定义的styles.styl文件中，修改样式即可,如：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 侧边栏样式</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.06</span>), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 文章样式</span><br><span class="line"><span class="selector-class">.post-block</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.06</span>), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 文章周围空白</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.posts-expand</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">14px</span> <span class="built_in">rgba</span>(<span class="number">202</span>,<span class="number">203</span>,<span class="number">203</span>,<span class="number">0.5</span>);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">14px</span> <span class="built_in">rgba</span>(<span class="number">202</span>,<span class="number">203</span>,<span class="number">204</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        示例
+    </div>
+    <div class='spoiler-content'>
+        <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 侧边栏样式</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.06</span>), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 文章样式</span><br><span class="line"><span class="selector-class">.post-block</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.06</span>), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.12</span>);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 文章周围空白</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.posts-expand</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">14px</span> <span class="built_in">rgba</span>(<span class="number">202</span>,<span class="number">203</span>,<span class="number">203</span>,<span class="number">0.5</span>);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">14px</span> <span class="built_in">rgba</span>(<span class="number">202</span>,<span class="number">203</span>,<span class="number">204</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+<h2 id="内容折叠"><a href="#内容折叠" class="headerlink" title="内容折叠"></a>内容折叠</h2><p>文章中有大段代码的话会不太好看。通过安装<code>hexo-spoiler</code>插件，即可解决。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// 安装插件</span><br><span class="line">npm install hexo-sliding-spoiler --save </span><br><span class="line"></span><br><span class="line">// 如果hexo没有自动检测到插件，则需要在hexo配置文件中添加</span><br><span class="line">plugins:</span><br><span class="line"> - hexo-sliding-spoiler</span><br><span class="line"></span><br><span class="line">// 使用方式 效果看上面样式修改部分</span><br><span class="line">&#123;% spoiler title %&#125;</span><br><span class="line">content</span><br><span class="line">&#123;% endspoiler %&#125;</span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>Blog</category>
       </categories>
@@ -124,13 +279,12 @@
 <li>delete空指针是安全的。</li>
 <li><strong>动态结构</strong>:structName *ps = new structName:这样创建的结构是在运行时动态创建的，且该结构没有名称，只知道其地址。因此，不能用句点访问结构的成员，而应该用箭头运算符来访问。</li>
 </ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li>头文件的引用：<ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="头文件的引用"><a href="#头文件的引用" class="headerlink" title="头文件的引用"></a>头文件的引用</h3><ul>
 <li>系统自带的：<math.h> 用&lt;&gt;</li>
 <li>自定义的： “user.h” 用”” 查找顺序为：用户目录-&gt;c++安装目录-&gt;系统文件</li>
 </ul>
-</li>
-<li>枚举:enum color {red, blue, yellow, black};<ul>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>enum color {red, blue, yellow, black};</p>
+<ul>
 <li>color是新的(枚举)类名。</li>
 <li>red,blue…成为符号常量，对应整数值0~3，称为枚举量。</li>
 <li>枚举是整型，可以被提升为int，但反之不可以。</li>
@@ -138,15 +292,19 @@
 <li>可以设置枚举量的值，在定义枚举时用=赋值即可。</li>
 <li>枚举量的值默认初始为0，之后没个没被初始化的枚举量的值比起前面一个大1。</li>
 </ul>
-</li>
-<li>c++命名约定：<ul>
+<h3 id="c-命名约定"><a href="#c-命名约定" class="headerlink" title="c++命名约定"></a>c++命名约定</h3><ul>
 <li>常规函数驼峰，取值设值函数要求与相应的变量名对应(get,set小写)。</li>
 <li>变量一律小写，单词之间用下划线隔开，类成员变量最后加个下划线以区分。</li>
 <li>文件名也是小写加下划线</li>
 </ul>
-</li>
+<h3 id="数组初始化规则"><a href="#数组初始化规则" class="headerlink" title="数组初始化规则"></a>数组初始化规则</h3><ul>
+<li>只有在定义数组时才能使用初始化，以后就不能使用了，也不能将一个数组赋给另一个数组。初始化后的数组只能用下标赋值。</li>
+<li>部分初始化：给定的初始化列表的长度没有指定的数组长度大时，编译器将用给定值初始化最前面的n个元素，剩下的未指定值的元素都设为0。将数组所有初始化为0，只需要 <code>int arr[5] = {0}</code>即可。</li>
+<li>C++11中，数组初始化可以不加等号。初始化为0可用 <code>int arr[5] = {}</code>。</li>
+<li>禁止缩窄转化(即在初始化时有float-&gt;long之类的类型转换)。</li>
 </ul>
-]]></content>
+<h3 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> isbn;</span><br><span class="line">    <span class="keyword">int</span> price;</span><br><span class="line">&#125;Book, *Pbook;</span><br><span class="line"></span><br><span class="line">Book b = &#123;.isbn=<span class="number">98741931</span>, .price=<span class="number">50</span>&#125;;</span><br><span class="line">Pbook pb = &amp;b; <span class="comment">// 这里pb就是Book类型的指针</span></span><br></pre></td></tr></table></figure>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>C++</category>
       </categories>
@@ -197,7 +355,7 @@
 <h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>同链接，前面加一个”!”<br>![](/images/ace.jpg “ace”)<br><img src="/images/ace.jpg" alt="" title="ace"></p>
 <h2 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h2><p>转义符号，将符号变成普通符号</p>
 <h2 id="反引号"><a href="#反引号" class="headerlink" title="反引号"></a>反引号</h2><p>标记，<code>高亮</code></p>
-]]></content>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>Blog</category>
       </categories>
