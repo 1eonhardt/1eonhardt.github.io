@@ -303,10 +303,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="栈-Stack"><a href="#栈-Stack" class="headerlink" title="栈(Stack)"></a>栈(Stack)</h2><h3 id="栈的定义"><a href="#栈的定义" class="headerlink" title="栈的定义"></a>栈的定义</h3><p>栈可定义为只允许在表的末端进行插入和删除的线性表。又叫后进先出的线性表(LIFO)。允许插入和删除的一端叫栈顶(top),另一端叫栈底(bottom)。<br><a id="more"></a></p>
-<h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><h4 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h4><p>用顺序表或数组实现。<br>用数组存储数据，数组[0]为栈底，数组最后一个非零元素为栈顶，用top标识。<br>入栈时，数据加到top+1位置。需要考虑栈溢出的情况。<br>出栈时，移除top位置数据。需要考虑空栈的情况。</p>
-<h4 id="共享栈"><a href="#共享栈" class="headerlink" title="共享栈"></a>共享栈</h4><p>用一个数组定义两个栈：定义一个足够的栈空间。将空间两端设为栈底，用b[0],b[1]指示，栈顶用t[0],t[1]标记。t[x]=b[x]空栈时相应的栈为空，t[0]+1==t[1]时，栈满。</p>
-<h4 id="链式栈"><a href="#链式栈" class="headerlink" title="链式栈"></a>链式栈</h4><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+        <h2 id="栈stack"><a class="markdownIt-Anchor" href="#栈stack"></a> 栈(Stack)</h2>
+<h3 id="栈的定义"><a class="markdownIt-Anchor" href="#栈的定义"></a> 栈的定义</h3>
+<p>栈可定义为只允许在表的末端进行插入和删除的线性表。又叫后进先出的线性表(LIFO)。允许插入和删除的一端叫栈顶(top),另一端叫栈底(bottom)。</p>
+<a id="more"></a>
+<h3 id="如何实现"><a class="markdownIt-Anchor" href="#如何实现"></a> 如何实现</h3>
+<h4 id="顺序栈"><a class="markdownIt-Anchor" href="#顺序栈"></a> 顺序栈</h4>
+<p>用顺序表或数组实现。<br />
+用数组存储数据，数组[0]为栈底，数组最后一个非零元素为栈顶，用top标识。<br />
+入栈时，数据加到top+1位置。需要考虑栈溢出的情况。<br />
+出栈时，移除top位置数据。需要考虑空栈的情况。</p>
+<h4 id="共享栈"><a class="markdownIt-Anchor" href="#共享栈"></a> 共享栈</h4>
+<p>用一个数组定义两个栈：定义一个足够的栈空间。将空间两端设为栈底，用b[0],b[1]指示，栈顶用t[0],t[1]标记。t[x]=b[x]空栈时相应的栈为空，t[0]+1==t[1]时，栈满。</p>
+<h4 id="链式栈"><a class="markdownIt-Anchor" href="#链式栈"></a> 链式栈</h4>
+<h3 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h3>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -367,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#栈-Stack"><span class="nav-number">1.</span> <span class="nav-text">栈(Stack)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈的定义"><span class="nav-number">1.1.</span> <span class="nav-text">栈的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现"><span class="nav-number">1.2.</span> <span class="nav-text">如何实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序栈"><span class="nav-number">1.2.1.</span> <span class="nav-text">顺序栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享栈"><span class="nav-number">1.2.2.</span> <span class="nav-text">共享栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链式栈"><span class="nav-number">1.2.3.</span> <span class="nav-text">链式栈</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">1.3.</span> <span class="nav-text">复杂度分析</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#栈stack"><span class="nav-number">1.</span> <span class="nav-text"> 栈(Stack)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈的定义"><span class="nav-number">1.1.</span> <span class="nav-text"> 栈的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现"><span class="nav-number">1.2.</span> <span class="nav-text"> 如何实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序栈"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 顺序栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享栈"><span class="nav-number">1.2.2.</span> <span class="nav-text"> 共享栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链式栈"><span class="nav-number">1.2.3.</span> <span class="nav-text"> 链式栈</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">1.3.</span> <span class="nav-text"> 复杂度分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -450,12 +461,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">16k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
 </div>
 
         
@@ -593,6 +604,9 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
 
   
 
