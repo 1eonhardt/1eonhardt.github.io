@@ -1,13 +1,4 @@
 /* global NexT, CONFIG */
-(function (document) {
-  [].forEach.call(document.getElementsByClassName('spoiler'), function(panel) {
-      panel.getElementsByClassName('spoiler-title')[0].onclick = function() {
-          panel.classList.toggle("collapsed");
-          panel.classList.toggle("expanded");
-      }
-  });
-})(document);
-
 HTMLElement.prototype.wrap = function(wrapper) {
   this.parentNode.insertBefore(wrapper, this);
   this.parentNode.removeChild(this);
