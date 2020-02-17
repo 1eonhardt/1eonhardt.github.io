@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|KaiTi:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="简单介绍git及其基本操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT基本使用方法">
+<meta property="og:url" content="http://yoursite.com/2020/02/14/git_tips/index.html">
+<meta property="og:site_name" content="Leonhardt&#39;s Blog">
+<meta property="og:description" content="简单介绍git及其基本操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-13T21:31:32.000Z">
+<meta property="article:modified_time" content="2020-02-14T11:24:45.897Z">
+<meta property="article:author" content="Leonhardt">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/14/git_tips/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>GIT基本使用方法 | Leonhardt's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leonhardt's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">格物致知</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">10</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/git_tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/link.png">
+      <meta itemprop="name" content="Leonhardt">
+      <meta itemprop="description" content="Time is choice">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leonhardt's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GIT基本使用方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-14 05:31:32 / 修改时间：19:24:45" itemprop="dateCreated datePublished" datetime="2020-02-14T05:31:32+08:00">2020-02-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/14/git_tips/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/14/git_tips/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">简单介绍git及其基本操作</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="版本控制"><a class="markdownIt-Anchor" href="#版本控制"></a> 版本控制</h2>
+<p>当你开发一个简单的小项目的时候，可能没几个文件，记住开发进度和上次修改了什么比较轻松。但是版本控制(tracking revisions over time,按时间追踪记录修改)会随着项目复杂化而更加复杂。</p>
+<p>如果你不仅想追踪修改历史，还想知道是谁，什么时候修改的。就需要版本控制系统(Version Control System,VCS)。</p>
+<p>VCS软件(以git为例)，通常包含以下工具：</p>
+<ul>
+<li>保存项目状态 (snapshot)</li>
+<li>查看修改历史 (git log)</li>
+<li>撤销修改 (git reset)</li>
+<li>防止冲突</li>
+</ul>
+<p>git是当前最流行的版本控制工具，用a stream of snapshot记录修改，并且是分布式的。</p>
+<p>github或coding.net是提供git仓库托管服务的。你可以将你本地的仓库推送到github,github中就有了和你本地仓库完全一样的库。在github上，有图形化界面可以方便的进行修改，合并等操作。</p>
+<h2 id="使用git"><a class="markdownIt-Anchor" href="#使用git"></a> 使用Git</h2>
+<h3 id="初始化仓库init-repository"><a class="markdownIt-Anchor" href="#初始化仓库init-repository"></a> 初始化仓库(init repository)</h3>
+<p>首先，创建一个新文件夹，并进入该文件夹。或者进入一个已有的文件夹。<br />
+执行<code>git init</code>命令即可。<br />
+执行完之后，该文件夹下会出现一个.git文件夹。本地仓库初始化就成功了。</p>
+<h3 id="跟踪文件tracking-files提交commit查看提交历史"><a class="markdownIt-Anchor" href="#跟踪文件tracking-files提交commit查看提交历史"></a> 跟踪文件(tracking files)，提交(commit)，查看提交历史</h3>
+<p>库(即init的文件夹)中的文件有三种状态：</p>
+<ul>
+<li>Not tracked:未跟踪，git不会记录这类文件的变化</li>
+<li>Staged:暂存，变化已经记录到临时工作区(Staging Area)</li>
+<li>Committed:已提交，记录修改确定了，git中记录的当前版本就是提交后的版本了</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在已初始化的空仓库中 创建第一个文件</span></span><br><span class="line">touch readme.md</span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入一些内容</span></span><br><span class="line">echo "Don't forget 3 Oct 11" &gt;&gt; readme.md</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看文件状态</span></span><br><span class="line">git status # 在Untracked file中可以看到readme.md</span><br><span class="line"><span class="meta">#</span><span class="bash"> 告诉git跟踪这个文件(staging)</span></span><br><span class="line">git add readme.md</span><br><span class="line">git status # 在Changes to be commited中可以看到readme.md</span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交修改 -m 后面是提交的附加信息 在查看提交历史时能看到 -a 表示提交暂存区所有修改</span></span><br><span class="line">git commit -m "first commit"</span><br><span class="line">git status # 会显示No commits yet</span><br></pre></td></tr></table></figure>
+<p>第一次提交时，需要设置用户名和邮箱地址。多人协作的必要步骤。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 保存在 C:\Users\userB\.gitconfig 文件中</span></span><br><span class="line">git config --global user.name "Your name"</span><br><span class="line">git config --global user.email "Your email"</span><br></pre></td></tr></table></figure>
+<p>查看提交历史</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 反向列出你的提交记录，包含提价时的附加信息，提交者，提交日期，版本信息</span></span><br><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>修改最近一次提交(amend)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 合并暂存区的更改到上一次提交记录中，并更改附加信息。如果没有更改，就只是修改附加信息</span></span><br><span class="line">git commit --amend -m "updated commit message"</span><br></pre></td></tr></table></figure>
+<p>忠告：千万别对已经提交到远程仓库的commit进行amend。因为如果有其他人pull过了，会给远程仓库带来严重的混乱。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        换了github账户后的提交错误
+    </div>
+    <div class='spoiler-content'>
+        <p>原账户userA,新账户userB。clone一个新账户的库，本地修改无法提交，报错：remote: Permission to userB/testa.git denied to userA。原因是userA账户生成了ssh key。userB 提交commit到GitHub时，用的是userA的对应的ssh公匙，所以会报这个错。<br />
+想要同时用两个账户，需要如下操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生成新公匙</span></span><br><span class="line">ssh-keygen -t rsa -C "new sshkey"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 回车后，输入新的公匙的存储位置(一定要指定，否则会覆盖原公匙，即userA的。推荐 /c/Users/yourusername/.ssh/id_rsa_new)</span></span><br></pre></td></tr></table></figure>
+<p>之后在c:/Users/yourusername/.ssh下创建config文件，文件名就叫config。输入以下内容:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Default GitHub</span></span><br><span class="line"><span class="string">Host</span> <span class="string">github.com</span></span><br><span class="line"><span class="string">HostName</span> <span class="string">github.com</span></span><br><span class="line"><span class="string">User</span> <span class="string">git</span></span><br><span class="line"><span class="string">IdentityFile</span> <span class="string">~/.ssh/id_rsa</span></span><br><span class="line"></span><br><span class="line"><span class="string">Host</span> <span class="string">userBhub</span></span><br><span class="line"><span class="string">HostName</span> <span class="string">github.com</span></span><br><span class="line"><span class="string">User</span> <span class="string">git</span></span><br><span class="line"><span class="string">IdentityFile</span> <span class="string">~/.ssh/id_rsa_new</span></span><br></pre></td></tr></table></figure>
+<p>之后再修改提交的GitHub远程库的ssh地址即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 原ssh地址为git@github.com:userB/testa.git，将git@github.com部分改成config文件中Host的值。</span></span><br><span class="line">git remote set-url origin userBhub:userB/testa.git</span><br></pre></td></tr></table></figure>
+<p>再次提交就没问题了。</p>
+
+    </div>
+</div>
+<h3 id="克隆远程库clone拉取pull和推送push"><a class="markdownIt-Anchor" href="#克隆远程库clone拉取pull和推送push"></a> 克隆远程库(clone),拉取(pull)和推送(push)</h3>
+<p>在github上创建的仓库都有一个地址。可以选择https或ssh形式的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将远程库的内容复制到本地，包括提交记录等版本信息</span></span><br><span class="line">git clone https://xxxxxx.git</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果想将本地库连接到远程库，可用以下命令</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> origin是给远程库起的名字，实际相当于一个变量，值为后面跟的URL</span></span><br><span class="line">git remote add origin https://xxxxxx.git</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看远程库名字和地址</span></span><br><span class="line">git remote -v</span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地修改提交后，推送到远程库</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -u是告诉git记住当前参数，下次直接git push就会自动使用当前参数</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> master是默认的分支名称</span></span><br><span class="line">git push -u origin master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果远程库有更新，使用pull同步到本地</span></span><br><span class="line">git pull origin master</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看修改内容</span></span><br><span class="line">git diff HEAD</span><br><span class="line"><span class="meta">#</span><span class="bash"> git diff commitid1 commitid2 比较两次commit</span></span><br></pre></td></tr></table></figure>
+<h3 id="resetcheckout"><a class="markdownIt-Anchor" href="#resetcheckout"></a> Reset&amp;Checkout</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看暂存区的修改</span></span><br><span class="line">git diff --staged</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果发现某个文件改错了，可以重置该文件，即将文件从暂存区移除</span></span><br><span class="line">git reset "filename"</span><br><span class="line"><span class="meta">#</span><span class="bash"> 此时文件内容还是错误的内容，你可以修改后再次提交</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者上次提交的版本(注意:如果没有reset，checkout出来的是暂存区中的内容)</span></span><br><span class="line">git checkout "filename"</span><br></pre></td></tr></table></figure>
+<h3 id="分支branch"><a class="markdownIt-Anchor" href="#分支branch"></a> 分支(branch)</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 新建分支</span></span><br><span class="line">git branch my_new_branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换分支</span></span><br><span class="line">git checkout my_new_branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建并切换</span></span><br><span class="line">git checkout -b my_new_branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看分支列表</span></span><br><span class="line">git branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 合并分支 在master分支执行后，会将my_new_branch分支的修改合并进master分支，提交历史也会合并</span></span><br><span class="line">git merge my_new_branch</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除分支</span></span><br><span class="line">git branch -d my_new_branch</span><br></pre></td></tr></table></figure>
+<h3 id="stash"><a class="markdownIt-Anchor" href="#stash"></a> Stash</h3>
+<p><code>git stash</code>命令会暂时缓存任何你未提交的修改，包括暂存区的和未暂存的(没有通过<code>git add</code>命令添加到暂存区的，包括新add的增删文件，修改add过的文件)，不包括未追踪的文件。stash就相当于将之前的修改都隐藏了起来，之后的操作不会受到之前修改的限制。<br />
+注意：stash只保留在本地库中，不会被推送到远程库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 做一些修改1</span></span><br><span class="line">git stash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再做一些修改2</span></span><br><span class="line">git stash</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再再做一些修改3，并提交 假设三次修改的是不同的文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> some changes</span></span><br><span class="line">git commit</span><br><span class="line"><span class="meta">#</span><span class="bash"> 不想要修改2了</span></span><br><span class="line">git stash pop</span><br><span class="line"><span class="meta">#</span><span class="bash"> 继续从修改1开始</span></span><br><span class="line">git stash apply</span><br></pre></td></tr></table></figure>
+<p>注意：<code>git stash apply</code>会将修改应用到所有分支。比如，在test分支修改了一个文件，stash以后再apply回来，这样master分支中也会有一个未提交的修改。</p>
+<h3 id="合并冲突"><a class="markdownIt-Anchor" href="#合并冲突"></a> 合并冲突</h3>
+<p>在合并分支，apply stash，pull，push时如果文件内容有冲突(即不同人/分支的不同提交中修改了相同的地方)。</p>
+<p>解决冲突：首先用<code>git status</code>查看有冲突的文件，打开有冲突的文件，在有冲突的地方会有提示符。&lt;&lt;&lt;&lt;&lt;&lt;&lt;, ========, 和&gt;&gt;&gt;&gt;&gt;&gt;&gt;。一般 &lt;&lt;&lt;&lt;&lt;&lt;&lt; 和 ======= 之间是接受合并的分支，另一半是被合入的分支。把冲突的地方改好后提交即可。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/11/dsa_tree_note/" rel="prev" title="树">
+      <i class="fa fa-chevron-left"></i> 树
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本控制"><span class="nav-number">1.</span> <span class="nav-text"> 版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用git"><span class="nav-number">2.</span> <span class="nav-text"> 使用Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化仓库init-repository"><span class="nav-number">2.1.</span> <span class="nav-text"> 初始化仓库(init repository)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跟踪文件tracking-files提交commit查看提交历史"><span class="nav-number">2.2.</span> <span class="nav-text"> 跟踪文件(tracking files)，提交(commit)，查看提交历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#克隆远程库clone拉取pull和推送push"><span class="nav-number">2.3.</span> <span class="nav-text"> 克隆远程库(clone),拉取(pull)和推送(push)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resetcheckout"><span class="nav-number">2.4.</span> <span class="nav-text"> Reset&amp;Checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支branch"><span class="nav-number">2.5.</span> <span class="nav-text"> 分支(branch)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stash"><span class="nav-number">2.6.</span> <span class="nav-text"> Stash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并冲突"><span class="nav-number">2.7.</span> <span class="nav-text"> 合并冲突</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leonhardt"
+      src="/images/link.png">
+  <p class="site-author-name" itemprop="name">Leonhardt</p>
+  <div class="site-description" itemprop="description">Time is choice</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/1eonhardt" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;1eonhardt" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+    <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+    <div class="widget-wrap">
+        <h3 class="widget-title">Tag Cloud</h3>
+        <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/" rel="tag">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/next/" rel="tag">next</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a><span class="tag-list-count">6</span></li></ul>
+            </canvas>
+        </div>
+    </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leonhardt</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">37k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:02</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css">
+
+
+  
+
+
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'jhvpPsB1XNrKem0O4G3kQ0iL-gzGzoHsz',
+    appKey: 'q8Vopc6b1idQOkgJIGLxjhBC',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
